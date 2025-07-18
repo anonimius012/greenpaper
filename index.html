@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSite - Web3 Terminal Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #0a0a0a;
+            color: #00ff00;
+        }
+        .terminal-box {
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        .progress-bar {
+            background-color: #003300;
+        }
+        .progress-fill {
+            background-color: #00cc00;
+            height: 100%;
+            width: 45%;
+        }
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .btn-hover:hover {
+            background-color: #003300;
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full">
+        <!-- Main Terminal Container -->
+        <div class="terminal-box bg-black p-4 rounded-sm">
+            <!-- Header -->
+            <div class="text-center mb-6">
+                <pre class="text-green-500">+------------------------------------------+</pre>
+                <pre class="text-green-500">|            👾 WELCOME TO DEEPSITE          |</pre>
+                <pre class="text-green-500">|     The Terminal for Decentralized Life  |</pre>
+                <pre class="text-green-500">+------------------------------------------+</pre>
+            </div>
+
+            <!-- Main Menu -->
+            <div class="grid grid-cols-2 gap-2 mb-6">
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [1]  Sell NFT
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [2]  👤 Profile
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [3]  Connect Wallet
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [4]  📈 Market
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [5]  🧠 AI Tools
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [6] 🔐 Identity
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [7]  🧪 Labs
+                </button>
+                <button class="terminal-btn border border-green-500 p-2 text-left hover:bg-green-900 transition">
+                    [8]  ❓ Help
+                </button>
+            </div>
+
+            <!-- Input Prompt -->
+            <div class="flex items-center">
+                <span class="text-green-500 mr-2">&gt;</span>
+                <span class="text-green-500">Please select an option:</span>
+                <span class="ml-2 w-4 h-6 bg-green-500 blink"></span>
+            </div>
+
+            <!-- Divider -->
+            <div class="my-6 border-t border-green-500 border-dashed"></div>
+
+            <!-- Active Module Display (Example: Sell NFT) -->
+            <div id="active-module">
+                <pre class="text-green-500">+----------------------------+</pre>
+                <pre class="text-green-500">|          SELL NFT         |</pre>
+                <pre class="text-green-500">+----------------------------+</pre>
+                <pre class="text-green-500">| [🔼] Upload NFT Image      |</pre>
+                <pre class="text-green-500">| [✏️] Enter Name & Price     |</pre>
+                <pre class="text-green-500">| [⛓️] Choose Blockchain     |</pre>
+                <pre class="text-green-500">| [📂] Choose Collection     |</pre>
+                <pre class="text-green-500">+----------------------------+</pre>
+                <pre class="text-green-500">| [✅ Submit]   [❌ Cancel]   |</pre>
+                <pre class="text-green-500">+----------------------------+</pre>
+                
+                <div class="mt-4">
+                    <pre class="text-green-500">Uploading... [▓▓▓▓▓▓░░░░░░] 45%</pre>
+                    <pre class="text-green-500">Minting on chain  ⛓️...</pre>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="mt-8 grid grid-cols-4 gap-1">
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">🛒 Sell</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">👤 Profile</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">🧩 Wallet</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">📈 Market</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">🧠 AI</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">🔐 ID</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">🧪 Labs</button>
+                <button class="terminal-btn border border-green-500 p-1 text-xs text-center btn-hover">❓ Help</button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="flex justify-between text-xs text-green-500 mt-2">
+            <span>DeepSite v1.0.3</span>
+            <span>ETH: $3,421.56 ▲ 2.3%</span>
+            <span>🟢 Online</span>
+        </div>
+    </div>
+
+    <script>
+        // Simple module switching demonstration
+        const modules = {
+            home: `
++------------------------------------------+
+|            👾 WELCOME TO DEEPSITE          |
+|     The Terminal for Decentralized Life  |
++------------------------------------------+
+`,
+            sell: `
++----------------------------+
+|          SELL NFT         |
++----------------------------+
+| [🔼] Upload NFT Image      |
+| [✏️] Enter Name & Price     |
+| [⛓️] Choose Blockchain     |
+| [📂] Choose Collection     |
++----------------------------+
+| [✅ Submit]   [❌ Cancel]   |
++----------------------------+
+`,
+            profile: `
++------------------------------+
+|           PROFILE           |
++------------------------------+
+| Wallet: 0xABCD...1234      |
+| Listed NFTs: 3               |
+| Total Sales: 2.15 ETH        |
+| Identity Level: 3️⃣           |
++------------------------------+
+`,
+            wallet: `
++------------------------------+
+|        CONNECT WALLET        |
++------------------------------+
+| Choose a wallet provider:    |
+|                              |
+| [🦊 Metamask] [🌐 WalletConnect] |
+| [🧩 Trust Wallet] [🪙 Coinbase] |
++------------------------------+
+`,
+            market: `
++-------------------------------+
+|        NFT MARKET 📈          |
++-------------------------------+
+|  🔥 Trending Collections       |
+|  New Listings               |
+|  💎 Highest Sales Today        |
+|  🧪 DeepSite AI Picks          |
++-------------------------------+
+`,
+            ai: `
++----------------------------+
+|          AI TOOLS         |
++----------------------------+
+| [🧠] Generate NFT Ideas     |
+| [🎨] AI Art Prompts         |
+| [📖] Smart Contract Explain |
+| [📊] Wallet Analyzer        |
++----------------------------+
+`,
+            identity: `
++------------------------------+
+|        CRYPTO IDENTITY       |
++------------------------------+
+| Handle: @an0nymoose          |
+| Reputation: ★★★★☆            |
+| Karma: +248                  |
+| SBTs: 2                      |
++------------------------------+
+`,
+            labs: `
++-----------------------------+
+|         DEEPSITE LABS       |
++-----------------------------+
+|  ⚗️ Mint AI-generated NFTs    |
+|  Deploy micro-contracts    |
+| ️ Explore darknet drops     |
+|  🎲 Chain randomness tests    |
++-----------------------------+
+`,
+            help: `
++------------------------------+
+|             HELP             |
++------------------------------+
+| 🤖 Type /help for commands   |
+|  Ask the AI Assistant      |
+| 💬 Contact Devs              |
++------------------------------+
+`
+        };
+
+        // Add click handlers for menu items
+        document.querySelectorAll('.terminal-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const text = this.textContent.trim();
+                if (text.includes('Sell NFT')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.sell}</pre>`;
+                } else if (text.includes('Profile')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.profile}</pre>`;
+                } else if (text.includes('Connect Wallet')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.wallet}</pre>`;
+                } else if (text.includes('Market')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.market}</pre>`;
+                } else if (text.includes('AI Tools')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.ai}</pre>`;
+                } else if (text.includes('Identity')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.identity}</pre>`;
+                } else if (text.includes('Labs')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.labs}</pre>`;
+                } else if (text.includes('Help')) {
+                    document.getElementById('active-module').innerHTML = `<pre class="text-green-500">${modules.help}</pre>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
